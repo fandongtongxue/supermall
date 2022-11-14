@@ -3,7 +3,8 @@
     <nav-bar class="home-nav">
       <div slot="center">购物街</div>
     </nav-bar>
-    <home-swiper :banners="banners"></home-swiper>
+    <home-swiper ref="hSwiper" :banners="banners" @swiperLoaded="swiperLoaded"></home-swiper>
+    <feature-view></feature-view>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import NavBar from '@/components/common/navbar/NavBar';
 
 import HomeSwiper from './childComps/HomeSwiper';
+import FeatureView from './childComps/FeatureView';
 
 import { getMultiData } from '@/network/home';
 
@@ -19,7 +21,8 @@ export default {
   name: 'Home',
   components: {
     NavBar,
-    HomeSwiper
+    HomeSwiper,
+    FeatureView
   },
   data() {
     return {
