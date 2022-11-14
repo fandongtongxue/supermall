@@ -1,0 +1,45 @@
+<template>
+  <div id="home">
+    <nav-bar class="home-nav">
+      <div slot="center">购物街</div>
+    </nav-bar>
+  </div>
+</template>
+
+<script>
+
+import NavBar from '@/components/common/navbar/NavBar';
+
+import { getMultiData } from '@/network/home';
+
+export default {
+  name: 'Home',
+  components: {
+    NavBar
+  },
+  data() {
+    return {
+      banners: []
+    }
+  },
+  created() {
+    this._getMultiData()
+  },
+  methods: {
+    _getMultiData() {
+      getMultiData().then( res => {
+        this.banners = res.data.banner.list
+      })
+    }
+  }
+}
+</script>
+
+<style>
+.home-nav {
+    background-color: var(--color-tint);
+    color: #fff;
+    position: relative;
+    z-index: 9;
+  }
+</style>
