@@ -1,6 +1,6 @@
 <template>
     <div class="goods-item">
-        <img :src="goodsItem.image" alt="">
+        <img :src="goodsItem.show.img" alt="">
         <span>{{goodsItem.title}}</span>
     </div>
 </template>
