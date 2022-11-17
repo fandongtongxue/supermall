@@ -27,6 +27,7 @@
   import TabControl from '@/components/content/tabControl/TabControl'
   import GoodsList from '@/components/content/goods/GoodsList'
   import Scroll from '@/components/common/scroll/Scroll'
+  import BackTop from '@/components/content/backTop/BackTop'
 
   import {getMultiData, getProductData} from "@/network/home";
   import {TOP_DISTANCE, POP, NEW, SELL} from "@/common/const";
@@ -41,7 +42,8 @@
       FeatureView,
       TabControl,
       GoodsList,
-      Scroll
+      Scroll,
+      BackTop
     },
     mixins: [backTopMixin],
     data() {
@@ -56,7 +58,8 @@
         currentType: POP,
         showTabControl: false,
         tabOffsetTop: 0,
-        saveY: 0
+        saveY: 0,
+        showBackTop: false
       }
     },
     computed: {
@@ -74,7 +77,7 @@
       this._getProductData(SELL)
 
       // 3.监听一些事件
-      this.$bus.$on('imgLoad', () => {
+      this.$bus.$on('itemImageLoad', () => {
       	this.$refs.scroll.refresh()
       })
     },
@@ -135,7 +138,11 @@
       },
 	    swiperLoaded() {
 		    this.tabOffsetTop = this.$refs.contentTab.$el.offsetTop;
-	    }
+	    },
+      backTop() {
+        this.$refs.scroll.scrollTo(0, 0, 300)
+      }
+      
     }
   }
 </script>
