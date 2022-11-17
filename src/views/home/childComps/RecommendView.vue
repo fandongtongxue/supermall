@@ -1,6 +1,6 @@
 <template>
     <div class="recommend">
-        <div class="recommend-item" v-for="item in recommend">
+        <div class="recommend-item" v-for="item in recommends">
             <a :href="item.link">
                 <img :src="item.image" alt="">
                 <span>{{item.title}}</span>
@@ -13,7 +13,7 @@
 export default {
     name: 'RecommendView',
     props: {
-        recommend:{
+        recommends:{
             type: Array,
             default: [],
             required: true

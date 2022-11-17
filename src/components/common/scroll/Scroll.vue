@@ -37,6 +37,11 @@ export default {
             scroll: null
         }
     },
+    computed: {
+        scrollY() {
+            return this.scroll.y
+        }
+    },
     mounted() {
         setTimeout(this._initScroll(),200)
     },
@@ -47,12 +52,13 @@ export default {
                 click: this.click,
                 pullUpLoad: this.pullUpLoad
             })
-
+            //滚动事件
             if (this.probeType == 2 || this.probeType == 3) {
                 this.scroll.on('scroll', position => {
                     this.$emit('scroll', position)
                 })
             }
+            //上拉加载
             if (this.pullUpLoad) {
                 this.scroll.on('pullingUp', () => {
                     this.$emit('pullingUp')
