@@ -13,7 +13,7 @@
       <recommend-view :recommends="recommends"></recommend-view>
       <feature-view></feature-view>
       <tab-control ref="contentTab" class="tab-control" @tabClick="tabClick"></tab-control>
-      <goods-list :goods="showGoodsList"></goods-list>
+      <goods-list :goods="showGoodsList" @itemClick="itemClick"></goods-list>
     </scroll>
     <back-top v-show="showBackTop" @click.native="backTop"/>
   </div>
@@ -76,9 +76,14 @@
       this._getProductData(NEW)
       this._getProductData(SELL)
 
+      
+    },
+    mounted() {
+
+      const refresh = this.debounce(this.$refs.scroll.refresh)
       // 3.监听一些事件
       this.$bus.$on('itemImageLoad', () => {
-      	this.$refs.scroll.refresh()
+      	refresh()
       })
     },
     activated() {
@@ -141,8 +146,24 @@
 	    },
       backTop() {
         this.$refs.scroll.scrollTo(0, 0, 300)
+      },
+      debounce(func, delay) {
+        let timer = null
+        return function (...args) {
+          if (timer) clearTimeout(timer)
+          timer = setTimeout(() => {
+            func.apply(this, args)
+          }, delay)
+        }
+      },
+      itemClick(item) {
+        this.$router.push({
+          path: '/detail',
+          query: {
+            iid: item.iid
+          }
+        })
       }
-      
     }
   }
 </script>
