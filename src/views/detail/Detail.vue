@@ -1,7 +1,8 @@
 <template>
-    <div>
+    <div class="detail">
         <detail-nav></detail-nav>
         <detail-swiper :topImages="topImages"></detail-swiper>
+        <detail-bottom-bar></detail-bottom-bar>
     </div>
 </template>
 
@@ -10,6 +11,8 @@ import DetailNav from './childComps/DetailNav'
 
 import DetailSwiper from './childComps/DetailSwiper'
 
+import DetailBottomBar from './childComps/DetailBottomBar'
+
 
 import { getProductDetailData } from '@/network/detail'
 
@@ -17,7 +20,8 @@ export default {
     name: 'Detail',
     components: {
         DetailNav,
-        DetailSwiper
+        DetailSwiper,
+        DetailBottomBar
     },
     data() {
         return {
@@ -37,4 +41,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>
