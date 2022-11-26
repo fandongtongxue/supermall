@@ -157,6 +157,7 @@
         }
       },
       itemClick(item) {
+        console.log(item.iid)
         this.$router.push({
           path: '/detail',
           query: {
